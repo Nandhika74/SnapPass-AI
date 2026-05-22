@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeUpVariant } from "../../animations/variants.js";
 
-const HeroSection = () => {
+const HeroSection = ({darkMode, toggleTheme}) => {
   return (
     <section className={`home-page ${darkMode? 'home-page-dark': 'home-page-light' }`}>
 

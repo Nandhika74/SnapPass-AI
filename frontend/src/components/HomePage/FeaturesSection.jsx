@@ -4,7 +4,9 @@ import { fadeUpVariant } from "../../animations/variants.js";
 
 const FeaturesSection = ({ features, iconMap }) => {
   return (
+    
     <section className="features-section" aria-labelledby="features-title">
+      
       <motion.div
         variants={fadeUpVariant}
         initial="hidden"

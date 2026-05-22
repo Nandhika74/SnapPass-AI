@@ -18,7 +18,7 @@ function AppRoutes({darkMode, toggleTheme}) {
     <RouteErrorBoundary>
       <Suspense fallback={<DelayedFallback delayMs={250} />}>
         <Routes>
-          <Route path="/" element={<HomePage darkMode={darkMode} toggleTheme={toggleTheme}/>} />
+          <Route path="/"             element={<HomePage darkMode={darkMode} toggleTheme={toggleTheme}/>} />
           <Route path="/upload"       element={<UploadPage darkMode={darkMode} toggleTheme={toggleTheme}/>} />
           <Route path="/editor"       element={<EditorPage darkMode={darkMode} toggleTheme={toggleTheme}/>} />
           <Route path="/print-preview" element={<PrintPreviewPage darkMode={darkMode} toggleTheme={toggleTheme}/>} />

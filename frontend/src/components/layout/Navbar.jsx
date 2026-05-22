@@ -92,8 +92,15 @@ function Navbar({darkMode, toggleTheme}) {
       </div>
 
       {/* Mobile Drawer */}
-      {menuOpen && (
-        <nav className={`navbar__mobile-menu ${darkMode? "navbar__mobile-menu-dark" : "navbar__mobile-menu-light"}`} aria-label="Mobile navigation">
+          <nav
+            className={`navbar__mobile-menu ${menuOpen ? 'active' : ''} 
+            ${darkMode  
+                  ? 'navbar__mobile-menu-dark'
+                  : 'navbar__mobile-menu-light'
+              }
+            `}
+            aria-label="Mobile navigation"
+          >
           {navLinks.map(({ path, label }) => (
             <NavLink
               key={path}
@@ -118,7 +125,7 @@ function Navbar({darkMode, toggleTheme}) {
             </NavLink>
           ))}
         </nav>
-      )}
+      
     </header>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeUpVariant } from "../../animations/variants.js";
 
-const AIShowcaseSection = ({ chips, iconMap }) => {
+const AIShowcaseSection = ({ darkMode, toggleTheme, chips, iconMap }) => {
   return (
     <section className="ai-showcase" aria-labelledby="ai-showcase-title">
       {/* left  text */}

@@ -131,10 +131,10 @@ function HomePage({darkMode, toggleTheme}) {
 
   return (
     <div>
-      <HeroSection />
+      <HeroSection darkMode = {darkMode} toggleTheme={toggleTheme}/>
 
       {/* ── Showcase Section ── */}
-      <AIShowcaseSection chips={chips} iconMap={iconMap} />
+      <AIShowcaseSection darkMode = {darkMode} toggleTheme={toggleTheme} chips={chips} iconMap={iconMap} />
 
       {/* ── How it Works ── */}
       <StepsSection steps={steps} />
