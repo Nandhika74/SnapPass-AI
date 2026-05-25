@@ -1,4 +1,4 @@
-#  SnapPass AI — Backend
+# 🚀 SnapPass AI — Backend
 
 The Express.js REST API for SnapPass AI. Handles photo uploads, connects to the Python AI service for processing, and manages user authentication.
 
@@ -6,7 +6,7 @@ Runs on **`http://localhost:5000`**
 
 ---
 
-## Prerequisites
+## 📋 Prerequisites
 
 - [Node.js](https://nodejs.org/) v18 or higher
 - [MongoDB](https://www.mongodb.com/) (local or Atlas)
@@ -14,7 +14,7 @@ Runs on **`http://localhost:5000`**
 
 ---
 
-## Local Setup
+## 🚀 Local Setup
 
 ### 1. Navigate to the backend folder
 
@@ -58,7 +58,7 @@ Backend will be running at `http://localhost:5000`
 
 ---
 
-##  Environment Variables
+## ⚙️ Environment Variables
 
 Create a `.env` file in the `backend/` folder:
 
@@ -100,92 +100,96 @@ CLOUDINARY_API_SECRET=
 
 ---
 
-##  Folder Structure
-'''
+## 📁 Folder Structure
+
+```
 backend/
 ├── docs/
-│   ├── authentication.md
-│   └── errorhandling.md
-│
+│   ├── authentication.md            # Auth flow documentation
+│   └── errorhandling.md             # Error handling documentation
 ├── src/
+│   ├── app.js                       # Express app setup, middleware, routes
 │   ├── config/
-│   │   ├── config.js
-│   │   └── db.js
-│   │
+│   │   ├── config.js                # Reads and validates .env variables
+│   │   └── db.js                    # MongoDB connection setup
 │   ├── controllers/
-│   │   ├── auth.controller.js
-│   │   ├── image.controller.js
-│   │   ├── print.controller.js
-│   │   └── upload.controller.js
-│   │
+│   │   ├── auth.controller.js       # Register, login, logout
+│   │   ├── image.controller.js      # Forwards to Python AI service
+│   │   ├── print.controller.js      # Generates A4 print sheet
+│   │   └── upload.controller.js     # Handles photo upload logic
 │   ├── dao/
-│   │   ├── passwordResetOtp.dao.js
-│   │   └── user.dao.js
-│   │
-│   ├── middlewares/
-│   │   ├── auth.middleware.js
-│   │   ├── error.middleware.js
-│   │   ├── rateLimit.middleware.js
-│   │   ├── upload.middleware.js
-│   │   └── validate.middleware.js
-│   │
+│   │   ├── passwordResetOtp.dao.js  # OTP database queries
+│   │   └── user.dao.js              # User database queries
+│   ├── middleware/
+│   │   ├── auth.middleware.js       # JWT authentication check
+│   │   ├── error.middleware.js      # Global error handler
+│   │   ├── rateLimit.middleware.js  # Rate limiting for auth routes
+│   │   ├── upload.middleware.js     # Multer file upload config
+│   │   └── validate.middleware.js   # express-validator error handler
 │   ├── models/
-│   │   ├── passwordResetOtp.model.js
-│   │   ├── printSheet.model.js
-│   │   ├── processedImage.model.js
-│   │   ├── upload.model.js
-│   │   ├── uploadHistory.model.js
-│   │   └── user.model.js
-│   │
+│   │   ├── passwordResetOtp.model.js # OTP MongoDB schema
+│   │   ├── printSheet.model.js       # Print sheet MongoDB schema
+│   │   ├── processedImage.model.js   # Processed image MongoDB schema
+│   │   ├── upload.model.js           # Upload MongoDB schema
+│   │   ├── UploadHistory.js          # Upload history MongoDB schema
+│   │   └── user.model.js             # User MongoDB schema
 │   ├── routes/
-│   │   ├── auth.routes.js
-│   │   ├── image.routes.js
-│   │  ├── print.routes.js
-│   │   └── upload.routes.js
-│   │
-│   ├── services/
-│   │   ├── auth.service.js
-│   │   ├── cloudinary.service.js
-│   │   └── passwordResetOtp.service.js
-│   │
+│   │   ├── auth.routes.js           # POST /api/auth/*
+│   │   ├── image.routes.js          # POST /api/process
+│   │   ├── print.routes.js          # POST /api/print/*
+│   │   └── upload.routes.js         # POST /api/upload
+│   ├── service/
+│   │   ├── auth.service.js          # Auth business logic
+│   │   ├── cloudinary.service.js    # Cloudinary upload logic
+│   │   └── passwordResetOtp.service.js # OTP logic
 │   ├── utils/
-│   │   ├── catchAsync.js
-│   │   ├── generateOTP.js
-│   │   ├── photoPresets.js
-│   │   ├── sendEmail.js
-│   │   └── setToken.js
-│   │
-│   ├── errors/
-│   │   ├── AppError.js
-│   │   ├── AuthError.js
-│   │   ├── NotFoundError.js
-│   │   └── ValidationError.js
-│   │
-│   ├── validation/
-│   │   └── auth.validation.js
-│   │
-│   └── app.js
-│
-├── uploads/
-│
-├── .dockerignore
-├── .env.example
-├── .gitignore
-├── Dockerfile
-├── backend-rules.md
-├── package.json
-├── package-lock.json
-├── server.js
-└── vercel.json
-'''
+│   │   ├── catchAsync.js            # Async error wrapper
+│   │   ├── generateOTP.js           # OTP generator
+│   │   ├── photoPresets.js          # Passport photo size presets
+│   │   ├── sendEmail.js             # Email sender using Resend
+│   │   ├── setToken.js              # JWT cookie setter
+│   │   └── errors/
+│   │       ├── AppError.js          # Base error class
+│   │       ├── AuthError.js         # Auth specific errors
+│   │       ├── NotFoundError.js     # 404 errors
+│   │       └── ValidationError.js   # Validation errors
+│   └── validation/
+│       └── auth.validation.js       # express-validator rules
+├── .env                             # Local environment variables (not committed)
+├── .env.example                     # Template for .env
+├── backend-rules.md                 # Backend coding rules
+├── Dockerfile                       # Docker configuration
+├── package.json                     # Dependencies
+└── server.js                        # Entry point — starts Express server
+```
 
-## API Endpoints
+---
+
+## 🗄️ Database Connection
+
+`db.js` handles the MongoDB connection using Mongoose.
+
+It is called once when the server starts in `server.js`:
+- Connects to `MONGO_URI` from `.env`
+- Logs `MongoDB connected` on success
+- Crashes server on connection failure so the issue is caught immediately
+
+---
+
+## 📡 API Endpoints
 
 ### Health Check
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/health` | Check if backend is running |
+
+**Response:**
+```json
+{ "status": "ok", "service": "SnapPass AI Backend" }
+```
+
+---
 
 ### Upload
 
@@ -198,7 +202,7 @@ backend/
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `photo` | File |  Yes | Portrait photo (JPEG, PNG, WEBP) |
+| `photo` | File | ✅ Yes | Portrait photo (JPEG, PNG, WEBP) |
 
 **Success Response — `201 Created`:**
 ```json
@@ -257,7 +261,7 @@ backend/
 
 ---
 
-##  How Backend Connects to Python AI Service
+## 🔌 How Backend Connects to Python AI Service
 
 ```
 React Frontend
@@ -296,9 +300,10 @@ const aiResponse = await axios.post(
 res.set("Content-Type", "image/png");
 res.send(Buffer.from(aiResponse.data));
 ```
+
 ---
 
-## MongoDB Setup
+## 🗄️ MongoDB Setup
 
 ### Option 1 — Local MongoDB
 
@@ -328,10 +333,10 @@ MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/snappass
 
 ---
 
-## Common Errors & Fixes
+## ⚠️ Common Errors & Fixes
 
 **`MONGO_URI is not defined`**
-Add `MONGO_URI` to your `.env` file. Make sure MongoDB is running.
+Add `MONGO_URI` to your `.env` file and make sure MongoDB is running.
 
 **`RESEND_API_KEY is not defined`**
 Add `RESEND_API_KEY=dummy_key_for_dev` to `.env` for local development.
@@ -340,7 +345,7 @@ Add `RESEND_API_KEY=dummy_key_for_dev` to `.env` for local development.
 Add `EMAIL_FROM=test@test.com` to `.env` for local development.
 
 **CORS error**
-Check that `CORS_ORIGIN` in `.env` matches your frontend URL exactly — including the port number:
+Check that `CORS_ORIGIN` in `.env` matches your frontend URL exactly including port:
 ```env
 CORS_ORIGIN=http://localhost:5174
 ```
@@ -355,9 +360,15 @@ python main.py
 **`JWT_SECRET is not defined`**
 Add `JWT_SECRET=any_random_string` to `.env`.
 
+**`venv` not activating on Windows**
+Run this in PowerShell first:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 ---
 
-## Dependencies
+## 📦 Dependencies
 
 | Package | Purpose |
 |---------|---------|
