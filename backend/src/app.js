@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import hpp from 'hpp';
 import { fileURLToPath } from 'url';
 
 import uploadRoutes from './routes/upload.routes.js';
@@ -37,6 +38,7 @@ app.use(
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(hpp());
 app.use(cookieParser());
 
 app.use("/uploads", express.static(path.join(localDirname, "..", "uploads")));
