@@ -6,9 +6,8 @@ import {
   Globe,
   BadgeCheck,
   ArrowRight,
-  Instagram,
-  Twitter,
-  Linkedin,
+  Share2,
+  User,
 } from 'lucide-react';
 
 import './Footer.css';
@@ -137,17 +136,17 @@ function Footer({ darkMode }) {
 
             {/* SOCIALS */}
             <div className="footer__socials">
-              <a href="/" className="footer__social-link">
-                <Instagram size={18} />
-              </a>
+                <a href="/" className="footer__social-link">
+                  <Globe size={18} />
+                </a>
 
-              <a href="/" className="footer__social-link">
-                <Twitter size={18} />
-              </a>
+                <a href="/" className="footer__social-link">
+                  <Share2 size={18} />
+                </a>
 
-              <a href="/" className="footer__social-link">
-                <Linkedin size={18} />
-              </a>
+                <a href="/" className="footer__social-link">
+                  <User size={18} />
+                </a>
             </div>
           </div>
 
