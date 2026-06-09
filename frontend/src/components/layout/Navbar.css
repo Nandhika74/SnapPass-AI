@@ -91,7 +91,6 @@
   gap: 4px;
   flex: 1;
   justify-content: center;
-  margin-right: auto;
 }
 
 /* desktop*/
@@ -460,13 +459,20 @@
 }
 
 .navbar__language-selector:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.navbar__language-selector:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+@supports selector(:focus-visible) {
+  .navbar__language-selector:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .navbar__language-selector:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
 
 /* Dark Mode */
@@ -481,10 +487,11 @@
   border-color: rgba(232, 197, 0, 0.45);
 }
 
-.navbar__language-selector-dark:focus,
-.navbar__language-selector-dark:focus:not(:focus-visible) {
-  border-color: var(--color-border-dark);
-  box-shadow: none;
+@supports selector(:focus-visible) {
+  .navbar__language-selector-dark:focus:not(:focus-visible) {
+    border-color: var(--color-border-dark);
+    box-shadow: none;
+  }
 }
 
 /* Light Mode */
@@ -500,10 +507,11 @@
   border-color: var(--color-border-hover);
 }
 
-.navbar__language-selector-light:focus,
-.navbar__language-selector-light:focus:not(:focus-visible) {
-  border-color: var(--color-border);
-  box-shadow: none;
+@supports selector(:focus-visible) {
+  .navbar__language-selector-light:focus:not(:focus-visible) {
+    border-color: var(--color-border);
+    box-shadow: none;
+  }
 }
 
 .navbar__desktop-language {
