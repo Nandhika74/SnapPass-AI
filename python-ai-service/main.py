@@ -27,15 +27,16 @@ def validate_file_magic(file_path: str) -> bool:
     try:
         with open(file_path, "rb") as f:
             header = f.read(4)
-            if header.startswith(b"\xff\xd8\xff"): # JPEG
+            if header.startswith(b"\xff\xd8\xff"):  # JPEG
                 return True
-            if header.startswith(b"\x89PNG"): # PNG
+            if header.startswith(b"\x89PNG"):  # PNG
                 return True
-            if header.startswith(b"RIFF") and b"WEBP" in header: # WEBP
+            if header.startswith(b"RIFF") and b"WEBP" in header:  # WEBP
                 return True
     except Exception:
         pass
     return False
+
 
 def _safe_photo_path(raw: str) -> str:
     """
@@ -64,6 +65,7 @@ def _safe_photo_path(raw: str) -> str:
         raise ValueError("Invalid photo_path: file is outside the allowed upload directory.")
     return str(resolved)
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -72,10 +74,13 @@ os.makedirs(config.UPLOAD_DIR, exist_ok=True)
 # Blueprints
 app.register_blueprint(process_bp)
 
+
 # Health Check
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "python-ai-service"}
+
+
 # Face Quality Gate
 @app.route("/face-quality-check", methods=["POST"])
 def face_quality_check():
@@ -129,7 +134,6 @@ def generate_sheet():
     # Include a UUID in the filename so concurrent requests using the same
     # preset_id do not race on the same file path.
     output_path = os.path.join(output_dir, f"sheet_{preset_id}_{uuid.uuid4().hex}.jpg")
-
 
     saved = generate_a4_sheet(
         photo_path=photo_path,
